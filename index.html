@@ -21,8 +21,9 @@
                 </section>
                 <section v-if="info">
 
-
                         <h1 id="title">{{ info.data.title }}</h1>
+                    
+                        <a href="?date=2020-02-11"><h3>Example Date</h3></a>
 
                         <h2 id="date"><strong>Date: {{ info.data.date }}</strong></h2>
 
@@ -54,7 +55,7 @@
                 },
                 mounted() {
                     axios     
-                        .get("https://api.nasa.gov/planetary/apod?api_key=dJvbzNnl8WxP1e1amwx0t2zIb39aCZOciWlgdzG4")
+                        .get("https://api.nasa.gov/planetary/apod?api_key=dJvbzNnl8WxP1e1amwx0t2zIb39aCZOciWlgdzG4&date=" + this.$route.query.date)
                         .then(response => {
                             this.info = response
                             console.log(response)
