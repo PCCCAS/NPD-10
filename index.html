@@ -11,10 +11,10 @@
         <script src="scripts.js"></script>
 
         <!-- CSS link below -->
-        <link rel="stylesheet" href="css/reset.css">
+        <!-- <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/helper.css">
         <link rel="stylesheet" href="css/mixins.css">
-        <link rel="stylesheet" href="css/palette.css">
+        <link rel="stylesheet" href="css/palette.css"> -->
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
@@ -27,14 +27,20 @@
                     <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
                 </section>
                 <section v-if="info">
-                    <h1 id="title">{{ info.data.title }}</h1>
-                    <a href="?date=2020-02-11"><h3>Example Date</h3></a>
+                    <h1>NASA - Picture of the Day</h1>
                     <h2 id="date"><strong>Date: {{ info.data.date }}</strong></h2>
-                    <img id="image" v-bind:src="info.data.url" v-bind:alt="info.data.title">
-                    <h3 id="explanation">{{ info.data.explanation }}</h3>
+                    <p id="explanation">{{ info.data.explanation }}</p>
+                    <!--<a href="?date=2020-02-11"><h3>Example Date</h3></a>-->
+                    <figure>
+                        <img id="image" v-bind:src="info.data.url" v-bind:alt="info.data.title" width="100%">
+                        <figcaption id="title">{{ info.data.title }}</figcaption>
+                    </figure>
                     <p id="author">Copyright: {{ info.data.copyright }}</p>
-                    <!-- <pre>{{ info }}</pre> --> <!-- Raw API data, uncomment to show -->
+                    <!-- Raw API data, uncomment to show -->
+                    <!-- <pre>{{ info }}</pre> -->
                 </section>
+                <h2>Visit the page</h2>
+                <a href="https://www.nasa.gov/">NASA</a>
             </template>
         </div>
 
