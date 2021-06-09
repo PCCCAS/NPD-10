@@ -28,17 +28,21 @@
                 <section v-if="info">
                     <h2 id="date"><strong>Date: {{ info.data.date }}</strong></h2>
                     <p id="explanation">{{ info.data.explanation }}</p>
-
+                    <p><a v-bind:href="info.data.hdurl" target="blank">HD Image</a></p>
                     <figure>
                         <img id="image" v-bind:src="info.data.url" v-bind:alt="info.data.title" width="100%">
                         <figcaption id="author">Copyright: {{ info.data.copyright }}</figcaption>
                     </figure>
                     <h2 id="title">{{ info.data.title }}</h2>
-                    <!--<a href="?date=2020-02-11"><h3>Example Date</h3></a>-->
                     <!-- Raw API data, uncomment to show -->
                     <!-- <pre>{{ info }}</pre> -->
                 </section>
             </template>
+            <ul>
+                <a href="?date=2021-01-01">January 1, 2021</a>
+                <a href="?date=2011-01-01">January 1, 2011</a>
+                <a href="?date=2001-01-01">January 1, 2001</a>
+            </ul>
             <p>Visit <a href="https://www.nasa.gov/">NASA</a> Online</p>
         </div>
 
