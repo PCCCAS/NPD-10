@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>NASA Picture of the Day!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+
+    <!-- CSS link below -->
+    <link rel="stylesheet" href="../NPD-10/css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <template>
+            <section v-if="!info">This didn't run anything.</section>
+            <section v-if="errored">
+                <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
+            </section>
+            <section v-if="info">
+
+
+                <h1 id="title">{{ info.data.title }}</h1>
+
+                <a href="?date=2020-02-11">
+                    <h3>Example Date</h3>
+                </a>
+
+
+                <h2 id="date"><strong>Date: {{ info.data.date }}</strong></h2>
+
+
+                <img id="image" v-bind:src="info.data.url" v-bind:alt="info.data.title">
+
+
+                <h3 id="explanation">{{ info.data.explanation }}</h3>
+
+
+                <p id="author">Copyright: {{ info.data.copyright }}</p>
+
+
+
+
+                <!-- <pre>{{ info }}</pre> -->
+                <!-- Raw API data, uncomment to show -->
+            </section>
+        </template>
+    </div>
+    <script>
+        //Vue script
+        var router = new VueRouter({
+            mode: 'history',
+            routes: []
+        });
+        new Vue({
+            el: '#app',
+            router,
+            data() {
+                return {
+                    info: null,
+                    loading: true,
+                    errored: false
+                }
+            },
+            mounted() {
+                axios
+                    .get("https://api.nasa.gov/planetary/apod?api_key=dJvbzNnl8WxP1e1amwx0t2zIb39aCZOciWlgdzG4&date=" + this.$route.query.date)
+                    .then(response => {
+                        this.info = response
+                        console.log(response)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        this.errored = true
+                    })
+                    .finally(() => this.loading = false)
+            }
+        })
+
+    </script>
+</body>
+
+
+</html>
