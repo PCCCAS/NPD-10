@@ -8,10 +8,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
         <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+        <script src="scripts.js"></script>
 
         <!-- CSS link below -->
-        <link rel="stylesheet" href="">
-        <script src="scripts.js"></script>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/helper.css">
+        <link rel="stylesheet" href="css/mixins.css">
+        <link rel="stylesheet" href="css/palette.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
         <div id="app">
@@ -23,7 +27,7 @@
                 <section v-if="info">
 
                         <h1 id="title">{{ info.data.title }}</h1>
-                    
+
                         <a href="?date=2020-02-11"><h3>Example Date</h3></a>
 
                         <h2 id="date"><strong>Date: {{ info.data.date }}</strong></h2>
@@ -55,7 +59,7 @@
                     }
                 },
                 mounted() {
-                    axios     
+                    axios
                         .get("https://api.nasa.gov/planetary/apod?api_key=dJvbzNnl8WxP1e1amwx0t2zIb39aCZOciWlgdzG4&date=" + this.$route.query.date)
                         .then(response => {
                             this.info = response
